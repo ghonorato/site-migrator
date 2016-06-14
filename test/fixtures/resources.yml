@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  url: MyString
+  image: false
+  origin: MyString
+  migration: one
+  content: MyText
+
+two:
+  url: MyString
+  image: false
+  origin: MyString
+  migration: two
+  content: MyText

@@ -11,9 +11,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20160614214041) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "migrations", force: :cascade do |t|
+    t.string   "name"
+    t.string   "from_addres"
+    t.string   "to_address"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "resources", force: :cascade do |t|
+    t.string   "url"
+    t.boolean  "image"
+    t.string   "origin"
+    t.integer  "migration_id"
+    t.text     "content"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["migration_id"], name: "index_resources_on_migration_id", using: :btree
+  end
+
+  create_table "site_migrations", force: :cascade do |t|
+    t.string   "site_name"
+    t.string   "from_address"
+    t.string   "to_address"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_foreign_key "resources", "migrations"
 end
