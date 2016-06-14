@@ -34,7 +34,6 @@ gem 'jbuilder', '~> 2.0'
 gem 'rails_12factor', group: :production
 gem 'bootstrap-sass'
 gem 'bootstrap-sass-extras'
-gem 'simple_form'
 gem 'sidekiq'
 
 
