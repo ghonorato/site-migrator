@@ -15,6 +15,8 @@ class MigrationsController < ApplicationController
   # GET /migrations/new
   def new
     @migration = Migration.new
+    @migration.build_current_site
+    @migration.build_new_site
   end
 
   # GET /migrations/1/edit
@@ -69,6 +71,6 @@ class MigrationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def migration_params
-      params.require(:migration).permit(:name, :from_addres, :to_address)
+      params.require(:migration).permit(:name, current_site_attributes: [:url], new_site_attributes: [:url])
     end
 end

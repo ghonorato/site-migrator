@@ -1,4 +1,16 @@
 <%= form_for @migration, html: { class: 'form-horizontal' } do |f| %>
+
+  <% if @migration.errors.any? %>
+    <div class="alert alert-danger">
+      <strong><%= pluralize(@migration.errors.count, "error") %> prohibited this migration from being saved:</strong>
+      <ul>
+        <% @migration.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
   <div class="form-group">
     <%= f.label :name, class: 'control-label col-md-2' %>
     <div class="col-md-10">
@@ -6,16 +18,20 @@
     </div>
   </div>
   <div class="form-group">
-    <%= f.label :from_addres, class: 'control-label col-md-2' %>
-    <div class="col-md-10">
-      <%= f.text_field :from_addres, class: 'text_field form-control' %>
-    </div>
+    <%= f.fields_for :current_site, @migration.current_site || @migration.build_current_site do |s| %>
+      <%= s.label :url, class: 'control-label col-md-2' %>
+      <div class="col-md-10">
+        <%= s.text_field :url, class: 'text_field form-control' %>
+      </div>
+    <% end %>
   </div>
   <div class="form-group">
-    <%= f.label :to_address, class: 'control-label col-md-2' %>
-    <div class="col-md-10">
-      <%= f.text_field :to_address, class: 'text_field form-control' %>
-    </div>
+    <%= f.fields_for :new_site, @migration.new_site || @migration.build_new_site do |s| %>
+      <%= s.label :url, class: 'control-label col-md-2' %>
+      <div class="col-md-10">
+        <%= s.text_field :url, class: 'text_field form-control' %>
+      </div>
+    <% end %>
   </div>
 
   <div class="form-group">

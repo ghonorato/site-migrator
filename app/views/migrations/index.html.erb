@@ -5,10 +5,10 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th></th>
       <th><%= model_class.human_attribute_name(:name) %></th>
-      <th><%= model_class.human_attribute_name(:from_addres) %></th>
-      <th><%= model_class.human_attribute_name(:to_address) %></th>
+      <th><%= model_class.human_attribute_name('current_site.url') %></th>
+      <th><%= model_class.human_attribute_name('new_address.url') %></th>
       <th><%= model_class.human_attribute_name(:created_at) %></th>
       <th><%=t '.actions', default: t("helpers.actions") %></th>
     </tr>
@@ -17,20 +17,15 @@
     <% @migrations.each do |migration| %>
       <tr>
         <td><%= migration.id %></td>
-          <td><%= migration.name %></td>
-          <td><%= migration.from_addres %></td>
-          <td><%= migration.to_address %></td>
+        <td><%= migration.name %></td>
+        <td><%= migration.current_site.url %></td>
+        <td><%= migration.new_site.url %></td>
         <td><%=l migration.created_at, format: :long %></td>
         <td>
-          <%= link_to migration_path(migration), class: 'btn btn-xs', title: "#{ t('.show', default: t('helpers.links.show')) }" do %>
-            <%= glyph 'info-sign' %>
-          <%- end -%>
-          <%= link_to edit_migration_path(migration), class: 'btn btn-xs', title: "#{ t('.edit', default: t('helpers.links.edit')) }" do %>
-            <%= glyph 'pencil' %>
-          <%- end -%>
           <%= link_to migration_path(migration), method: :delete, data: { confirm: t('.confirm', default: t("helpers.links.confirm", default: 'Are you sure?')) }, class: 'btn btn-xs', title: "#{ t('.destroy', default: t('helpers.links.destroy')) }" do %>
             <%= glyph 'remove' %>
           <%- end -%>
+          <%= link_to 'recrawl', migration_start_crawl_path(migration), method: :put %>
         </td>
       </tr>
     <% end %>

@@ -7,10 +7,10 @@
   <dl>
       <dt class="label label-default"><%= model_class.human_attribute_name(:name) %></dt>
       <dd><pre class="prettyprint"><%= @migration.name %></pre></dd>
-      <dt class="label label-default"><%= model_class.human_attribute_name(:from_addres) %></dt>
-      <dd><pre class="prettyprint"><%= @migration.from_addres %></pre></dd>
-      <dt class="label label-default"><%= model_class.human_attribute_name(:to_address) %></dt>
-      <dd><pre class="prettyprint"><%= @migration.to_address %></pre></dd>
+      <dt class="label label-default"><%= model_class.human_attribute_name('current_site.url') %></dt>
+      <dd><pre class="prettyprint"><%= @migration.current_site.url %></pre></dd>
+      <dt class="label label-default"><%= model_class.human_attribute_name('new_site.url') %></dt>
+      <dd><pre class="prettyprint"><%= @migration.new_site.url %></pre></dd>
   </dl>
 </div>
 
