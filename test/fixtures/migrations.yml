@@ -2,10 +2,10 @@
 
 one:
   name: MyString
-  from_addres: MyString
-  to_address: MyString
+  current_address: MyString
+  new_address: MyString
 
 two:
   name: MyString
-  from_addres: MyString
-  to_address: MyString
+  current_address: MyString
+  new_address: MyString

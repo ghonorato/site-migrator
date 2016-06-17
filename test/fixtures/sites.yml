@@ -2,12 +2,8 @@
 
 one:
   url: MyString
-  image: false
-  site: one
-  content: MyText
+  migration: one
 
 two:
   url: MyString
-  image: false
-  site: two
-  content: MyText
+  migration: two

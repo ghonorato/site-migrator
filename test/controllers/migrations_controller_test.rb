@@ -17,7 +17,7 @@ class MigrationsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create migration" do
     assert_difference('Migration.count') do
-      post migrations_url, params: { migration: { from_addres: @migration.from_addres, name: @migration.name, to_address: @migration.to_address } }
+      post migrations_url, params: { migration: { current_address: @migration.current_address, name: @migration.name, new_address: @migration.new_address } }
     end
 
     assert_redirected_to migration_path(Migration.last)
@@ -34,7 +34,7 @@ class MigrationsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update migration" do
-    patch migration_url(@migration), params: { migration: { from_addres: @migration.from_addres, name: @migration.name, to_address: @migration.to_address } }
+    patch migration_url(@migration), params: { migration: { current_address: @migration.current_address, name: @migration.name, new_address: @migration.new_address } }
     assert_redirected_to migration_path(@migration)
   end
 

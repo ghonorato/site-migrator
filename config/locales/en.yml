@@ -21,3 +21,9 @@
 
 en:
   hello: "Hello world"
+  activerecord:
+    attributes:
+      current_site:
+        url: Current site address
+      new_site:
+        url: New site address
