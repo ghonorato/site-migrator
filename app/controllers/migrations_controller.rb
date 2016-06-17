@@ -53,6 +53,13 @@ class MigrationsController < ApplicationController
     end
   end
 
+  def start_crawl
+    if @migration = Migration.find(params[:migration_id])
+      @migration.current_site.crawl
+      @migration.new_site.crawl
+    end
+  end
+
   # DELETE /migrations/1
   # DELETE /migrations/1.json
   def destroy

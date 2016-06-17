@@ -35,6 +35,7 @@ gem 'rails_12factor', group: :production
 gem 'bootstrap-sass'
 gem 'bootstrap-sass-extras'
 gem 'sidekiq'
+gem 'mechanize'
 
 
 group :development, :test do
