@@ -7,11 +7,6 @@ class MigrationsController < ApplicationController
     @migrations = Migration.all
   end
 
-  # GET /migrations/1
-  # GET /migrations/1.json
-  def show
-  end
-
   # GET /migrations/new
   def new
     @migration = Migration.new
@@ -19,35 +14,18 @@ class MigrationsController < ApplicationController
     @migration.build_new_site
   end
 
-  # GET /migrations/1/edit
-  def edit
-  end
-
   # POST /migrations
   # POST /migrations.json
   def create
     @migration = Migration.new(migration_params)
+    byebug
 
     respond_to do |format|
       if @migration.save
-        format.html { redirect_to @migration, notice: 'Migration was successfully created.' }
+        format.html { redirect_to migrations_url, notice: 'Migration was successfully created.' }
         format.json { render :show, status: :created, location: @migration }
       else
         format.html { render :new }
-        format.json { render json: @migration.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # PATCH/PUT /migrations/1
-  # PATCH/PUT /migrations/1.json
-  def update
-    respond_to do |format|
-      if @migration.update(migration_params)
-        format.html { redirect_to @migration, notice: 'Migration was successfully updated.' }
-        format.json { render :show, status: :ok, location: @migration }
-      else
-        format.html { render :edit }
         format.json { render json: @migration.errors, status: :unprocessable_entity }
       end
     end
