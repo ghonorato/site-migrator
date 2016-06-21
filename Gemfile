@@ -34,8 +34,10 @@ gem 'jbuilder', '~> 2.0'
 gem 'rails_12factor', group: :production
 gem 'bootstrap-sass'
 gem 'bootstrap-sass-extras'
+gem 'sinatra', github: 'sinatra', require: false #Workaround for Sidekiq WebUI works with Rails 5
 gem 'sidekiq'
-gem 'mechanize'
+gem 'simple_form'
+gem 'cobweb'
 
 
 group :development, :test do
