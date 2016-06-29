@@ -18,7 +18,6 @@ class MigrationsController < ApplicationController
   # POST /migrations.json
   def create
     @migration = Migration.new(migration_params)
-    byebug
 
     respond_to do |format|
       if @migration.save

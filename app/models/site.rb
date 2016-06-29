@@ -8,7 +8,17 @@ class Site < ApplicationRecord
   validates :url, presence: true
 
   def crawl
-    CrawlerJob.perform_async(self.id)
+    c = Cobweb.new(
+      processing_queue: "CrawlerPerformJob",   
+      internal_urls: ["http://#{self.url}/*"],
+      queue_system: :sidekiq,
+      crawl_id: self.id
+    )
+    c.start("http://#{self.url}/")
+  end
+
+  def normalize_url
+    self.url = self.url.sub(/^https?\:\/\//, '').sub(/\/$/,'')
   end
 
 end

@@ -10,5 +10,7 @@ class CreateResources < ActiveRecord::Migration[5.0]
 
       t.timestamps
     end
+
+    add_index(:resources, [:url, :site_id], unique: true)
   end
 end

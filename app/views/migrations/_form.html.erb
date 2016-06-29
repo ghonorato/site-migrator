@@ -1,44 +1,10 @@
-<%= form_for @migration, html: { class: 'form-horizontal' } do |f| %>
-
-  <% if @migration.errors.any? %>
-    <div class="alert alert-danger">
-      <strong><%= pluralize(@migration.errors.count, "error") %> prohibited this migration from being saved:</strong>
-      <ul>
-        <% @migration.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
+<%= simple_form_for @migration do |f| %>
+  <%= f.input :name %>
+  <%= f.simple_fields_for :current_site do |s| %>
+    <%= s.input :url %>
   <% end %>
-
-  <div class="form-group">
-    <%= f.label :name, class: 'control-label col-md-2' %>
-    <div class="col-md-10">
-      <%= f.text_field :name, class: 'text_field form-control' %>
-    </div>
-  </div>
-  <div class="form-group">
-    <%= f.fields_for :current_site, @migration.current_site || @migration.build_current_site do |s| %>
-      <%= s.label :url, class: 'control-label col-md-2' %>
-      <div class="col-md-10">
-        <%= s.text_field :url, class: 'text_field form-control' %>
-      </div>
-    <% end %>
-  </div>
-  <div class="form-group">
-    <%= f.fields_for :new_site, @migration.new_site || @migration.build_new_site do |s| %>
-      <%= s.label :url, class: 'control-label col-md-2' %>
-      <div class="col-md-10">
-        <%= s.text_field :url, class: 'text_field form-control' %>
-      </div>
-    <% end %>
-  </div>
-
-  <div class="form-group">
-    <div class='col-md-offset-2 col-md-10'>
-      <%= f.submit nil, class: 'btn btn-primary' %>
-      <%= link_to t('.cancel', default: t("helpers.links.cancel")),
-                  migrations_path, class: 'btn btn-default' %>
-    </div>
-  </div>
+  <%= f.simple_fields_for :new_site do |s| %>
+    <%= s.input :url %>
+  <% end %>
+  <%= f.button :submit %>
 <% end %>

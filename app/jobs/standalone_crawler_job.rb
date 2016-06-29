@@ -1,4 +1,4 @@
-class CrawlerJob
+class StandaloneCrawlerJob
   
   include Sidekiq::Worker
   

@@ -1,6 +1,8 @@
 class Resource < ApplicationRecord
   belongs_to :site
 
+  validates :url, uniqueness: { scope: :site_id }
+
   def error?
     self.http_code >= 400
   end

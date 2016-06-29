@@ -18,8 +18,12 @@ ActiveRecord::Schema.define(version: 20160616185550) do
 
   create_table "migrations", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "current_site_id"
+    t.integer  "new_site_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["current_site_id"], name: "index_migrations_on_current_site_id", using: :btree
+    t.index ["new_site_id"], name: "index_migrations_on_new_site_id", using: :btree
   end
 
   create_table "resources", force: :cascade do |t|
@@ -32,16 +36,16 @@ ActiveRecord::Schema.define(version: 20160616185550) do
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
     t.index ["site_id"], name: "index_resources_on_site_id", using: :btree
+    t.index ["url", "site_id"], name: "index_resources_on_url_and_site_id", unique: true, using: :btree
   end
 
   create_table "sites", force: :cascade do |t|
     t.string   "url"
-    t.integer  "migration_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-    t.index ["migration_id"], name: "index_sites_on_migration_id", using: :btree
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "migrations", "sites", column: "current_site_id"
+  add_foreign_key "migrations", "sites", column: "new_site_id"
   add_foreign_key "resources", "sites"
-  add_foreign_key "sites", "migrations"
 end

@@ -1,6 +1,6 @@
 class Migration < ApplicationRecord
-  has_one :current_site, dependent: :destroy, class_name: 'Site', inverse_of: :migration
-  has_one :new_site, dependent: :destroy, class_name: 'Site', inverse_of: :migration
+  belongs_to :current_site, dependent: :destroy, class_name: 'Site', foreign_key: 'current_site_id'
+  belongs_to :new_site, dependent: :destroy, class_name: 'Site', foreign_key: 'new_site_id'
 
   validates :name, presence: true
 

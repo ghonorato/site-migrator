@@ -37,8 +37,7 @@ gem 'bootstrap-sass-extras'
 gem 'sinatra', github: 'sinatra', require: false #Workaround for Sidekiq WebUI works with Rails 5
 gem 'sidekiq'
 gem 'simple_form'
-gem 'cobweb'
-
+gem "cobweb" #, :path => "../cobweb"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

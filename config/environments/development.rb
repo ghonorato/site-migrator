@@ -1,6 +1,6 @@
 Rails.application.configure do
 
-  # require 'sidekiq/testing/inline'
+  require 'sidekiq/testing/inline' if ENV['SIDEKIQ_INLINE'] == 1
 
   # Settings specified here will take precedence over those in config/application.rb.
 
