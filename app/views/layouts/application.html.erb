@@ -36,10 +36,10 @@
     <%= favicon_link_tag 'favicon.ico', rel: 'shortcut icon' %>
     <%= javascript_include_tag "application" %>
   </head>
-  <body>
+  <%= content_tag :body, class: "#{controller_name}-controller #{action_name}-action" do %>
 
-    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-      <div class="container">
+    <nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+      <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
@@ -55,23 +55,46 @@
         <div class="navbar-collapse collapse navbar-responsive-collapse">
           <ul class="nav navbar-nav">
           </ul>
+          <a class="btn btn-primary navbar-btn pull-right" data-toggle="modal" href="#new-migration-modal">
+            <i class="fa fa-truck"></i> 
+            <%= t 'helpers.title.new', model: Migration.model_name.human.titleize %>
+          </a>           
         </div><!-- /.navbar-collapse -->
       </div>
     </nav>
+
+    <div class="modal" id="new-migration-modal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title"><%= t 'helpers.title.new', model: Migration.model_name.human.titleize %></h4>
+          </div>
+          <%= render 'migrations/form' %>
+        </div>
+      </div>
+    </div>
 
     <div class="container">
       <div class="row">
         <div class="col-md-12">
           <%= bootstrap_flash %>
-          <%= yield %>
         </div>
       </div><!--/row-->
-
-      <footer>
-        <p>&copy; Company 2016</p>
-      </footer>
-
     </div> <!-- /container -->
-
-  </body>
+    <div class="main">
+      <div class="container-fluid">
+        <%= yield %>      
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <footer>
+            <p>&copy; Company 2016</p>
+          </footer>
+        </div>
+      </div>
+    </div>
+  <% end %>
 </html>

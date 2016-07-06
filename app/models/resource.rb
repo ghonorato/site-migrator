@@ -3,6 +3,8 @@ class Resource < ApplicationRecord
 
   validates :url, uniqueness: { scope: :site_id }
 
+  before_save :normalize_url
+
   def error?
     self.http_code >= 400
   end
@@ -18,4 +20,10 @@ class Resource < ApplicationRecord
   def fresh?
     self.updated_at && self.created_at && self.updated_at > self.created_at && self.updated_at > 3.hours.ago && !error?
   end 
+
+  private
+
+  def normalize_url
+    self.url = site.relativize_url(url)
+  end
 end

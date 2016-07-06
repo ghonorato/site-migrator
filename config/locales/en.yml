@@ -21,9 +21,18 @@
 
 en:
   hello: "Hello world"
+  activemodel:
+    models:
+      resources_creation_form: 'URLs'
   activerecord:
     attributes:
       current_site:
         url: Current site address
       new_site:
         url: New site address
+  helpers:
+    title:
+      new: 'New %{model}'
+  resources:
+    index:
+      title: 'Add Resources'

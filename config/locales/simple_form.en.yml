@@ -11,7 +11,12 @@ en:
     error_notification:
       default_message: "Please review the problems below:"
     # Examples
-    # labels:
+    labels:
+      migration:
+        current_site:
+          url: 'Current website URL'
+        new_site:
+          url: 'New website URL'
     #   defaults:
     #     password: 'Password'
     #   user:
@@ -19,7 +24,10 @@ en:
     #       email: 'E-mail to sign in.'
     #     edit:
     #       email: 'E-mail.'
-    # hints:
+    hints:
+      resources_creation_form:
+        current_site_urls: One URL per line
+        new_site_urls: One URL per line
     #   defaults:
     #     username: 'User name to sign in.'
     #     password: 'No special characters, please.'

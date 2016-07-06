@@ -1,0 +1,29 @@
+<div class="row">
+  <div class="col-md-12">
+    <h1 class="page-header"><%= t '.title' %></h1>
+  </div>
+</div>
+
+<%= simple_form_for @resources_creation_form || ResourcesCreationForm.new , url: migration_resources_path(@migration) do |f| %>
+  <div class="row">
+    <div class="col-md-6">
+      <%= f.input :current_site_urls, as: :text %>
+    </div>
+    <div class="col-md-6">
+      <%= f.input :new_site_urls, as: :text %>
+    </div>  
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <%= f.submit class: 'btn btn-primary btn-lg' %>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+
+
+
+
+

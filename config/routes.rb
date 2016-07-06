@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
-  resources :migrations, only: [:index, :new, :create, :destroy] do
-    put :start_crawl
+
+  resources :migrations, only: [:index, :new, :create] do
+    resources :resources, only: [:index, :create]
   end
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   root 'migrations#index'
 end
