@@ -6,4 +6,6 @@ class Migration < ApplicationRecord
 
   accepts_nested_attributes_for :current_site
   accepts_nested_attributes_for :new_site
+
+  enum state: [ :inputing_urls, :fetching_url_data, :matching_redirects ]
 end
