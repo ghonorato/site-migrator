@@ -3,7 +3,6 @@ class Site < ApplicationRecord
   has_one :migration
 
   before_validation :normalize_url
-  after_commit :crawl, on: :create
 
   validates :url, presence: true
 
