@@ -21,6 +21,10 @@ class Resource < ApplicationRecord
     self.updated_at && self.created_at && self.updated_at > self.created_at && self.updated_at > 3.hours.ago && !error?
   end 
 
+  def full_url
+    URI.join(site.full_url, self.url)
+  end
+
   private
 
   def normalize_url
