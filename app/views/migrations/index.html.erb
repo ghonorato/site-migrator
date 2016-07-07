@@ -18,7 +18,7 @@
           <tr>
             <td><%= migration.id %></td>
             <td>
-              <%= link_to migration.name, migration_resources_path(migration) %>
+              <%= link_to migration.name, migration_action_path(migration) %>
             </td>
             <td><%= migration.current_site.url %></td>
             <td><%= migration.new_site.url %></td>
