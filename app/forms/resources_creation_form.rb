@@ -22,7 +22,6 @@ class ResourcesCreationForm
 
   def persist!
     Resource.transaction do
-      byebug
       @new_site_urls.split(/\r?\n/).each do |url|
         Resource.find_or_create_by! url: @new_site.relativize_url(url), site: @new_site
       end
