@@ -8,7 +8,7 @@ class ResourcesController < MigrationStateController
     respond_to do |format|
       if @resources_creation_form.save
         @migration.fetching_url_data!
-        PageFetcherJob.perform_later(@migration.id)
+        PageFetcherJob.perform_async(@migration.id)
 
         format.html { redirect_to migration_action_path(@migration) }
       else
