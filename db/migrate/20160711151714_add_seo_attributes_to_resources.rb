@@ -4,7 +4,7 @@ class AddSeoAttributesToResources < ActiveRecord::Migration[5.0]
       t.column :title, :string
       t.column :meta_description, :string
       t.column :response_time, :float
-      t.column :no_index, :boolean
+      t.column :no_index, :boolean, default: false
       t.column :redirect_through, :string, array: true
       t.rename :http_code, :status_code
       reversible do |dir|
