@@ -17,7 +17,7 @@ class Site < ApplicationRecord
   def relativize_url(url)
     uri = URI.parse(url)
     uri = uri.route_from(self.full_url).to_s unless uri.relative?
-    uri.to_s.sub(/\/$/,'')
+    uri.to_s
   end
 
 end
