@@ -9,7 +9,7 @@ class MigrationsController < ApplicationController
 
     respond_to do |format|
       if @new_migration.save
-        format.js { redirect_to new_migration_resource_path(@migration)}
+        format.js { redirect_to migration_action_path(@new_migration)}
       else
         format.js { render partial: 'form' }
       end

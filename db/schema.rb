@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160707155230) do
+ActiveRecord::Schema.define(version: 20160711151714) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,13 +28,17 @@ ActiveRecord::Schema.define(version: 20160707155230) do
 
   create_table "resources", force: :cascade do |t|
     t.string   "url"
-    t.integer  "http_code"
+    t.integer  "status_code"
     t.string   "redirect_location"
     t.boolean  "image"
     t.integer  "site_id"
-    t.text     "content"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
+    t.string   "title"
+    t.string   "meta_description"
+    t.float    "response_time"
+    t.boolean  "no_index"
+    t.string   "redirect_through",               array: true
     t.index ["site_id"], name: "index_resources_on_site_id", using: :btree
     t.index ["url", "site_id"], name: "index_resources_on_url_and_site_id", unique: true, using: :btree
   end
