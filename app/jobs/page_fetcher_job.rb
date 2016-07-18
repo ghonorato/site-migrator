@@ -4,32 +4,27 @@ class PageFetcherJob
 
   def perform(migration_id)
     migration = Migration.find(migration_id)
-
-    fetch(migration.current_site)
-    fetch(migration.new_site)
-
+    migration.resources.find_each { |r| fetch(r) }
     migration.matching_redirects!
   end
 
   private
 
-  def fetch(site)
-    site.resources.find_each do |r| 
-      c = Cobweb.new
-      response = c.get(r.full_url)
+  def fetch(r)
+    c = Cobweb.new
+    response = c.get(r.full_url)
 
-      r.status_code = response[:status_code]
+    r.status_code = response[:status_code]
 
-      doc = Nokogiri::HTML(response[:body])
-      
-      r.title = page_title(doc)
-      r.meta_description = page_meta_descripiton(doc)
-      r.redirect_through = response[:redirect_through]
-      r.response_time = response[:response_time]
-      r.no_index = no_index?(doc)
+    doc = Nokogiri::HTML(response[:body])
+    
+    r.title = page_title(doc)
+    r.meta_description = page_meta_descripiton(doc)
+    r.redirect_through = response[:redirect_through]
+    r.response_time = response[:response_time]
+    r.no_index = no_index?(doc)
 
-      r.save
-    end
+    r.save
   end
 
   def page_title(doc)

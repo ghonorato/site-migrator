@@ -1,9 +1,21 @@
 class Resource < ApplicationRecord
-  belongs_to :site
+  belongs_to :migration
 
-  validates :url, uniqueness: { scope: :site_id }
+  validates :url, uniqueness: { scope: [:migration, :type] }
 
   before_save :normalize_url
+
+  searchkick
+
+  def search_data
+    {
+      url: url,
+      title: title,
+      meta_description: meta_description,
+      type: type,
+      migration_id: migration.id
+    }
+  end
 
   def error?
     self.http_code >= 400
@@ -22,12 +34,14 @@ class Resource < ApplicationRecord
   end 
 
   def full_url
-    URI.join(site.full_url, self.url)
+    URI.join(base_url, self.url)
   end
 
   private
 
   def normalize_url
-    self.url = site.relativize_url(url)
+    uri = URI.parse(self.url)
+    uri = uri.route_from(base_url).to_s unless uri.relative?
+    self.url = uri.to_s
   end
 end

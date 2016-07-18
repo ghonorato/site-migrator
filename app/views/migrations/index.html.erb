@@ -7,8 +7,8 @@
         <tr>
           <th></th>
           <th><%= model_class.human_attribute_name(:name) %></th>
-          <th><%= model_class.human_attribute_name('current_site.url') %></th>
-          <th><%= model_class.human_attribute_name('new_site.url') %></th>
+          <th><%= model_class.human_attribute_name(:from_url) %></th>
+          <th><%= model_class.human_attribute_name(:to_url) %></th>
           <th><%= model_class.human_attribute_name(:created_at) %></th>
           <th><%=t '.actions', default: t("helpers.actions") %></th>
         </tr>
@@ -20,8 +20,8 @@
             <td>
               <%= link_to migration.name, migration_action_path(migration) %>
             </td>
-            <td><%= migration.current_site.url %></td>
-            <td><%= migration.new_site.url %></td>
+            <td><%= migration.from_url %></td>
+            <td><%= migration.to_url %></td>
             <td><%=l migration.created_at, format: :long %></td>
             <td>
             </td>

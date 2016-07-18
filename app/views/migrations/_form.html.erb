@@ -1,14 +1,8 @@
 <%= simple_form_for(@new_migration || Migration.new, url: migrations_path, remote: true) do |f| %>
   <div class="modal-body">
     <%= f.input :name %>
-
-    <%= f.simple_fields_for :current_site, f.object.current_site || Site.new do |s| %>
-      <%= s.input :url %>
-    <% end %>
-    <%= f.simple_fields_for :new_site, f.object.new_site || Site.new do |s| %>
-      <%= s.input :url %>
-    <% end %>
-
+    <%= f.input :from_url %>
+    <%= f.input :to_url %>
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

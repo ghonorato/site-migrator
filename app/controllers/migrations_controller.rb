@@ -17,6 +17,6 @@ class MigrationsController < ApplicationController
   end
 
   private def migration_params
-    params.require(:migration).permit(:name, current_site_attributes: [:url], new_site_attributes: [:url])
+    params.require(:migration).permit(:name, :from_url, :to_url)
   end
 end

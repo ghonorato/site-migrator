@@ -10,20 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160711151714) do
+ActiveRecord::Schema.define(version: 20160711214130) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "migrations", force: :cascade do |t|
     t.string   "name"
-    t.integer  "current_site_id"
-    t.integer  "new_site_id"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
-    t.integer  "state",           default: 0
-    t.index ["current_site_id"], name: "index_migrations_on_current_site_id", using: :btree
-    t.index ["new_site_id"], name: "index_migrations_on_new_site_id", using: :btree
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.integer  "state",      default: 0
+    t.string   "from_url"
+    t.string   "to_url"
   end
 
   create_table "resources", force: :cascade do |t|
@@ -31,25 +29,16 @@ ActiveRecord::Schema.define(version: 20160711151714) do
     t.integer  "status_code"
     t.string   "redirect_location"
     t.boolean  "image"
-    t.integer  "site_id"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
     t.string   "title"
     t.string   "meta_description"
     t.float    "response_time"
-    t.boolean  "no_index"
-    t.string   "redirect_through",               array: true
-    t.index ["site_id"], name: "index_resources_on_site_id", using: :btree
-    t.index ["url", "site_id"], name: "index_resources_on_url_and_site_id", unique: true, using: :btree
+    t.boolean  "no_index",          default: false
+    t.string   "redirect_through",                               array: true
+    t.string   "type"
+    t.integer  "migration_id"
+    t.index ["migration_id"], name: "index_resources_on_migration_id", using: :btree
   end
 
-  create_table "sites", force: :cascade do |t|
-    t.string   "url"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_foreign_key "migrations", "sites", column: "current_site_id"
-  add_foreign_key "migrations", "sites", column: "new_site_id"
-  add_foreign_key "resources", "sites"
 end

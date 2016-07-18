@@ -14,9 +14,8 @@ en:
     labels:
       migration:
         current_site:
-          url: 'Current website URL'
-        new_site:
-          url: 'New website URL'
+          from_url: 'Current website URL'
+          to_url: 'New website URL'
     #   defaults:
     #     password: 'Password'
     #   user:

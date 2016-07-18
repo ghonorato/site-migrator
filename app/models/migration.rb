@@ -1,15 +1,23 @@
 class Migration < ApplicationRecord
-  belongs_to :current_site, dependent: :destroy, class_name: 'Site', foreign_key: 'current_site_id'
-  belongs_to :new_site, dependent: :destroy, class_name: 'Site', foreign_key: 'new_site_id'
+  has_many :resources, dependent: :destroy
 
   validates :name, presence: true
+  validates :from_url, presence: true
+  validates :to_url, presence: true
 
-  accepts_nested_attributes_for :current_site
-  accepts_nested_attributes_for :new_site
+  before_validation :normalize_url
 
   enum state: [ :inputing_urls, :fetching_url_data, :matching_redirects ]
 
   def to_param
     "#{self.id}-#{self.name}".parameterize
   end
+
+  private
+
+  def normalize_url
+    self.from_url = self.from_url.sub(/^https?\:\/\//, '').sub(/\/$/,'')
+    self.to_url = self.to_url.sub(/^https?\:\/\//, '').sub(/\/$/,'')
+  end
+
 end

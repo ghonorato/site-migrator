@@ -1,10 +1,11 @@
 class ResourcesController < MigrationStateController
 
   def index
+    @resources_creation_form = ResourcesCreationForm.new
   end
 
   def create
-    @resources_creation_form = ResourcesCreationForm.new(params[:resources_creation_form], @migration.current_site, @migration.new_site)
+    @resources_creation_form = ResourcesCreationForm.new(@migration, params[:resources_creation_form])
     respond_to do |format|
       if @resources_creation_form.save
         @migration.fetching_url_data!

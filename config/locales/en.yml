@@ -25,11 +25,9 @@ en:
     models:
       resources_creation_form: 'URLs'
   activerecord:
-    attributes:
-      current_site:
-        url: Current site address
-      new_site:
-        url: New site address
+    migration:
+      from_url: Current website URL
+      to_url: New website URL
   helpers:
     title:
       new: 'New %{model}'
