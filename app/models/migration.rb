@@ -1,5 +1,7 @@
 class Migration < ApplicationRecord
   has_many :resources, dependent: :destroy
+  has_many :old_resources, -> { where(type: 'OldResource') }, inverse_of: :migration, class_name: 'OldResource'
+  has_many :new_resources, -> { where(type: 'NewResource') }, inverse_of: :migration, class_name: 'NewResource'
 
   validates :name, presence: true
   validates :from_url, presence: true

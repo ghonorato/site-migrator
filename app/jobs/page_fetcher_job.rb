@@ -5,6 +5,7 @@ class PageFetcherJob
   def perform(migration_id)
     migration = Migration.find(migration_id)
     migration.resources.find_each { |r| fetch(r) }
+    migration.old_resources.find_each { |r| r.update_redirect_match! }
     migration.matching_redirects!
   end
 

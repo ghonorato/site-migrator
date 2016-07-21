@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160711214130) do
+ActiveRecord::Schema.define(version: 20160719190121) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 20160711214130) do
     t.string   "redirect_through",                               array: true
     t.string   "type"
     t.integer  "migration_id"
+    t.integer  "redirect_match_id"
     t.index ["migration_id"], name: "index_resources_on_migration_id", using: :btree
   end
 
