@@ -5,11 +5,7 @@ class ApplicationController < ActionController::Base
 
   helper_method :migration_action_path
   def migration_action_path(migration)
-    case
-    when migration.fetching_url_data?, migration.matching_redirects?
-      migration_url_match_index_path(migration)
-    else
-      migration_resources_path(migration)
-    end 
+    opts = { only_path: true }.merge(migration.route)
+    url_for(opts) 
   end
 end

@@ -1,4 +1,4 @@
-class ResourcesController < MigrationStateController
+class UrlInputController < MigrationStateController
 
   def index
     @resources_creation_form = ResourcesCreationForm.new

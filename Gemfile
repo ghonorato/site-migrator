@@ -41,6 +41,8 @@ gem "font-awesome-rails"
 gem "cobweb"
 gem 'elasticsearch-model'
 gem 'elasticsearch-rails'
+gem 'oauth2'
+gem 'legato'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

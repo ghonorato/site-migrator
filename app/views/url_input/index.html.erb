@@ -4,7 +4,7 @@
   </div>
 </div>
 
-<%= simple_form_for @resources_creation_form, url: migration_resources_path(@migration) do |f| %>
+<%= simple_form_for @resources_creation_form, url: migration_action_path(@migration) do |f| %>
   <div class="row">
     <div class="col-md-6">
       <%= f.input :current_site_urls, as: :text %>
